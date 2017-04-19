@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Builder} from 'escher-vis';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app works!';
+  builder = Builder(null, null, null, null, {});
 }

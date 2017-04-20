@@ -1,4 +1,11 @@
 <h1>
   {{title}}
 </h1>
-<div id="escher-target"></div>
+<div id="escher-target" [ngClass]="{'green-scheme': greenScheme}"></div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="btn-group">
+      <button class="btn btn-primary" (click)="toggleColorScheme()">Change color scheme</button>
+    </div>
+  </div>
+</div>

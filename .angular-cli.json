@@ -20,6 +20,7 @@
       "prefix": "app",
       "styles": [
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/escher-vis/css/dist/builder.css",
         "styles.css"
       ],
       "scripts": [

@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+#escher-target.green-scheme svg.escher-svg .segment {
+  stroke: #33754E;
+}
+
+#escher-target.green-scheme svg.escher-svg .arrowhead {
+  fill: #33754E;
+}

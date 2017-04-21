@@ -8,9 +8,23 @@
       <input type="file" id="inputMap" (change)="fileChange($event)"/>
     </span>
   </div>
-  <div class="col-md-9">
+
+  <div class="col-md-6">
     <div class="btn-group">
       <button class="btn btn-primary" (click)="toggleColorScheme()">Change color scheme</button>
+      <button class="btn btn-primary" (click)="compute()">Compute!</button>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div *ngIf="nodeStats" class="panel panel-default">
+      <div class="panel-heading"><h3 class="panel-title">Node stats</h3></div>
+      <table class="table table-striped">
+        <tr *ngFor="let nodeStat of nodeStats | object">
+          <td>{{ nodeStat.key }}</td>
+          <td> {{ nodeStat.value }}</td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>

@@ -16,6 +16,7 @@ export class AppComponent implements OnInit{
   builderOptions: any;
   greenScheme: boolean;
   nodeStats: any;
+  selectedSegment: any;
   constructor() {
     this.title = 'app works!';
     this.greenScheme = false;  
@@ -41,6 +42,17 @@ export class AppComponent implements OnInit{
         this.builderOptions
       );
       this.computeNodeStats(this.builder.map);
+      var selection = this.builder.selection;
+      selection.selectAll('.segment')
+        .style('cursor', (d) => {
+            return 'pointer';
+        })
+        .on('click', (segment) => {
+          this.selectedSegment = {
+            from: this.builder.map.nodes[segment.from_node_id],
+            to: this.builder.map.nodes[segment.to_node_id]
+          };
+        });
     }
     reader.readAsText(file);
   }

@@ -26,6 +26,14 @@
         </tr>
       </table>
     </div>
+
+    <div *ngIf="selectedSegment" class="panel panel-default">
+      <div class="panel-heading"><h3 class="panel-title">Selected segment</h3></div>
+      <table class="panel-body">
+        <p><label for="from">From:</label>{{ selectedSegment.from.name }}</p>
+        <p><label for="to">To:</label>{{ selectedSegment.to.name }}</p>        
+      </table>
+    </div>
   </div>
 </div>
 <div id="escher-target" [ngClass]="{'green-scheme': greenScheme}"></div>

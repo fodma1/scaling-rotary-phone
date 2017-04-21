@@ -11,19 +11,33 @@ export class AppComponent implements OnInit{
   title: string;
   target: Selection<BaseType, {}, null, undefined>;
   builder: any;
-  builderOptions: {};
+  builderOptions: any;
   greenScheme: boolean;
   constructor() {
     this.title = 'app works!';
-    this.greenScheme = false;    
+    this.greenScheme = false;  
+    this.builderOptions = {
+      menu: 'zoom'
+    };  
   }
-  ngOnInit() {
+  ngOnInit():void{
     this.target = select('#escher-target');
-    // I had issues with jQuery, and there was another issue, possibly a bug
-    // The `{menu: 'zoom'}` option is a workaround.
-    this.builder = Builder(null, null, null, this.target, this.builderOptions);
   }
-  toggleColorScheme() {
+  toggleColorScheme():void{
     this.greenScheme = !this.greenScheme;
+  }
+  fileChange(event){
+    var file:File = event.srcElement.files[0];
+    var reader:FileReader = new FileReader();
+    reader.onloadend = (e) => {
+      this.builder = Builder(
+        JSON.parse(reader.result),
+        null,
+        null,
+        this.target,
+        this.builderOptions
+      );
+    }
+    reader.readAsText(file);
   }
 }

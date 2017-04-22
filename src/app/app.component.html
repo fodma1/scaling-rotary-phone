@@ -20,7 +20,7 @@
     <div *ngIf="nodeStats" class="panel panel-default">
       <div class="panel-heading"><h3 class="panel-title">Node stats</h3></div>
       <table class="table table-striped">
-        <tr *ngFor="let nodeStat of nodeStats | object">
+        <tr *ngFor="let nodeStat of nodeStats">
           <td>{{ nodeStat.key }}</td>
           <td> {{ nodeStat.value }}</td>
         </tr>

@@ -50,15 +50,11 @@ export class AppComponent implements OnInit{
     }
     reader.readAsText(file);
   }
-  // Todo: move this to a component
   computeNodeStats(map):void {
     this.nodeStats = d3
       .nest()
       .key(e => e.node_type)
       .rollup(d => d.length)
       .entries(d3.values(map.nodes));
-  }
-  compute():void {
-    this.computeNodeStats(this.builder.map);
   }
 }

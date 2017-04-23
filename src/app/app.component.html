@@ -1,44 +1,41 @@
-<h1>
-  Scaling Rotary Phone
-</h1>
-<div class="row">
-  <div class="col-md-3">
-    <span class="btn btn-default btn-file">
-      Chose map
-      <input type="file" id="inputMap" (change)="fileChange($event)"/>
-    </span>
-  </div>
-
-  <div class="col-md-6">
-    <div class="btn-group">
-      <button class="btn btn-primary" (click)="toggleColorScheme()">Change color scheme</button>
-      <button class="btn btn-primary" (click)="compute()">Compute!</button>
-    </div>
-  </div>
-
-</div>
-<div class="row">
-  <div class="col-md-9">
-    <div id="escher-target" [ngClass]="{'green-scheme': greenScheme}"></div>
-  </div>
-
-  <div class="col-md-3">
-    <div *ngIf="nodeStats" class="panel panel-default">
-      <div class="panel-heading"><h3 class="panel-title">Node stats</h3></div>
-      <table class="table table-striped">
-        <tr *ngFor="let nodeStat of nodeStats">
-          <td>{{ nodeStat.key }}</td>
-          <td> {{ nodeStat.value }}</td>
-        </tr>
-      </table>
+<div class="container">
+  <h1>
+    Scaling Rotary Phone
+  </h1>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="btn-group">
+        <span class="btn btn-default btn-file"><span>Choose file</span>
+          <input type="file" id="inputMap" (change)="fileChange($event)"/>
+        </span>
+        <button class="btn btn-primary" (click)="toggleColorScheme()">Change color scheme</button>
+      </div>
     </div>
 
-    <div *ngIf="selectedSegment" class="panel panel-default">
-      <div class="panel-heading"><h3 class="panel-title">Selected segment</h3></div>
-      <table class="panel-body">
-        <p><label for="from">From:</label> {{ selectedSegment.from.name || selectedSegment.from.node_id }}</p>
-        <p><label for="to">To:</label> {{ selectedSegment.to.name || selectedSegment.to.node_id }}</p>        
-      </table>
+  </div>
+  <div class="row">
+    <div class="col-md-9">
+      <div id="escher-target" [ngClass]="{'green-scheme': greenScheme}"></div>
+    </div>
+
+    <div class="col-md-3">
+      <div *ngIf="nodeStats" class="panel panel-default">
+        <div class="panel-heading"><h3 class="panel-title">Node stats</h3></div>
+        <table class="table table-striped">
+          <tr *ngFor="let nodeStat of nodeStats">
+            <td>{{ nodeStat.key }}</td>
+            <td> {{ nodeStat.value }}</td>
+          </tr>
+        </table>
+      </div>
+
+      <div *ngIf="selectedSegment" class="panel panel-default">
+        <div class="panel-heading"><h3 class="panel-title">Selected segment</h3></div>
+        <div class="panel-body">
+          <div><label for="from">From:</label> {{ selectedSegment.from.name || selectedSegment.from.node_id }}</div>
+          <div><label for="to">To:</label> {{ selectedSegment.to.name || selectedSegment.to.node_id }}</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

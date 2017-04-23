@@ -10,7 +10,6 @@ import * as d3 from 'd3';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title: string;
   target: Selection<BaseType, {}, null, undefined>;
   builder: any;
   builderOptions: any;
@@ -18,7 +17,6 @@ export class AppComponent implements OnInit{
   nodeStats: any;
   selectedSegment: any;
   constructor() {
-    this.title = 'app works!';
     this.greenScheme = false;  
     this.builderOptions = {
       menu: 'zoom'

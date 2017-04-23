@@ -1,5 +1,5 @@
 <h1>
-  {{title}}
+  Scaling Rotary Phone
 </h1>
 <div class="row">
   <div class="col-md-3">
@@ -14,6 +14,12 @@
       <button class="btn btn-primary" (click)="toggleColorScheme()">Change color scheme</button>
       <button class="btn btn-primary" (click)="compute()">Compute!</button>
     </div>
+  </div>
+
+</div>
+<div class="row">
+  <div class="col-md-9">
+    <div id="escher-target" [ngClass]="{'green-scheme': greenScheme}"></div>
   </div>
 
   <div class="col-md-3">
@@ -36,4 +42,3 @@
     </div>
   </div>
 </div>
-<div id="escher-target" [ngClass]="{'green-scheme': greenScheme}"></div>

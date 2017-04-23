@@ -12,15 +12,11 @@ import * as d3 from 'd3';
 export class AppComponent implements OnInit{
   target: Selection<BaseType, {}, null, undefined>;
   builder: any;
-  builderOptions: any;
   greenScheme: boolean;
   nodeStats: any;
   selectedSegment: any;
   constructor() {
     this.greenScheme = false;  
-    this.builderOptions = {
-      menu: 'zoom'
-    };  
   }
   ngOnInit():void {
     this.target = select('#escher-target');
@@ -37,7 +33,7 @@ export class AppComponent implements OnInit{
         null,
         null,
         this.target,
-        this.builderOptions
+        {menu: 'zoom'}
       );
       this.computeNodeStats(this.builder.map);
       var selection = this.builder.selection;

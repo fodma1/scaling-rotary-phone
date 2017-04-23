@@ -18,43 +18,46 @@ export class AppComponent implements OnInit{
   constructor() {
     this.greenScheme = false;  
   }
+
   ngOnInit():void {
     this.target = select('#escher-target');
   }
+
   toggleColorScheme():void {
     this.greenScheme = !this.greenScheme;
   }
+
   fileChange(event):void {
     var file:File = event.srcElement.files[0];
     var reader:FileReader = new FileReader();
     reader.onloadend = (e) => {
       this.builder = Builder(
-        JSON.parse(reader.result),
-        null,
-        null,
-        this.target,
-        {menu: 'zoom'}
+        JSON.parse(reader.result), null, null, this.target, {menu: 'zoom'}
       );
       this.computeNodeStats(this.builder.map);
-      var selection = this.builder.selection;
-      selection.selectAll('.segment')
-        .style('cursor', (d) => {
-            return 'pointer';
-        })
-        .on('click', (segment) => {
-          this.selectedSegment = {
-            from: this.builder.map.nodes[segment.from_node_id],
-            to: this.builder.map.nodes[segment.to_node_id]
-          };
-        });
+      this.setUpClickHandler(this.builder.selection, this.builder.map.nodes);
     }
     reader.readAsText(file);
   }
+
   computeNodeStats(map):void {
     this.nodeStats = d3
       .nest()
       .key(e => e.node_type)
       .rollup(d => d.length)
       .entries(d3.values(map.nodes));
+  }
+  
+  setUpClickHandler(selection, nodes):void {
+    selection.selectAll('.segment')
+      .style('cursor', (d) => {
+          return 'pointer';
+      })
+      .on('click', (segment) => {
+        this.selectedSegment = {
+          from: nodes[segment.from_node_id],
+          to: nodes[segment.to_node_id]
+        };
+      });
   }
 }

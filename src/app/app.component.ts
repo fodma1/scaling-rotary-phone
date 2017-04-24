@@ -30,14 +30,16 @@ export class AppComponent implements OnInit{
   fileChange(event):void {
     var file:File = event.srcElement.files[0];
     var reader:FileReader = new FileReader();
-    reader.onloadend = (e) => {
+    reader.onloadend = () => {this.fileHandler(JSON.parse(reader.result));}
+    reader.readAsText(file);
+  }
+
+  fileHandler(contents):void {
       this.builder = Builder(
-        JSON.parse(reader.result), null, null, this.target, {menu: 'zoom'}
+        contents, null, null, this.target, {menu: 'zoom'}
       );
       this.computeNodeStats(this.builder.map);
       this.setUpClickHandler(this.builder.selection, this.builder.map.nodes);
-    }
-    reader.readAsText(file);
   }
 
   computeNodeStats(map):void {
@@ -47,7 +49,7 @@ export class AppComponent implements OnInit{
       .rollup(d => d.length)
       .entries(d3.values(map.nodes));
   }
-  
+
   setUpClickHandler(selection, nodes):void {
     selection.selectAll('.segment')
       .style('cursor', (d) => {
